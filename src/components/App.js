@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from "react";
+import {Pagination} from 'antd';
 import '../styles/App.css';
 import Card from "./CardBooks";
 
 function App() {
     const [books, setBooks] = useState([]);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const response = await fetch("https://stark-spire-22280.herokuapp.com/api/books");
+            const response = await fetch("https://stark-spire-22280.herokuapp.com/api/books?page=" + page);
             const json = await response.json();
             console.log("json", json);
             setBooks(json.data);
@@ -15,7 +17,11 @@ function App() {
         }
 
         fetchBooks();
-    }, []);
+    }, [page]);
+
+    const handlePage = (current) => {
+        setPage(current);
+    }
 
     return (
         <>
@@ -30,6 +36,13 @@ function App() {
                         bookData={book}
                     />
                 ))}
+            </div>
+            <div className={'container'}>
+                <Pagination
+                    defaultCurrent={1}
+                    total={30}
+                    onChange={handlePage}
+                />
             </div>
         </>
     );

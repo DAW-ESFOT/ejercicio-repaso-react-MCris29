@@ -1,4 +1,3 @@
-import logo from '../images/logo.svg';
 import '../styles/App.css';
 import React, {useState} from 'react';
 import {Card, Button, Modal} from 'antd';
