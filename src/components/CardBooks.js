@@ -1,6 +1,6 @@
 import '../styles/App.css';
 import React, {useState} from 'react';
-import {Card, Button, Modal} from 'antd';
+import {Card, Button, Modal, Row, Col} from 'antd';
 
 
 const {Meta} = Card;
@@ -31,7 +31,7 @@ function CardBooks({bookData}) {
             >
                 <Meta
                     title={bookData.title}
-                    description={bookData.author + "   $" + bookData.price}
+                    description={bookData.author + " - " + bookData.year_edition + "  " + "   $" + bookData.price}
                 />
                 <Button
                     type='primary'
@@ -66,6 +66,19 @@ function CardBooks({bookData}) {
                         }
                     </p>
                     <p><strong>Categoria:</strong> {bookData.category}</p>
+                    <p><strong>Portadas:</strong></p>
+                    <div className={'container'}>
+                        <img
+                            alt="example"
+                            src={bookData.cover_page}
+                            className={'image'}
+                        />
+                        <img
+                            alt="example"
+                            src={bookData.back_cover}
+                            className={'image'}
+                        />
+                    </div>
                 </Modal>
             </Card>
         </>
